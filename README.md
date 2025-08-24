@@ -224,21 +224,21 @@ graph TB
         CC[Claude Code]
         MCP_CLIENT[MCP Client]
     end
-    
+
     subgraph "Minimal MCP Server"
         SERVER[MCP Server Process]
         TOOLS[Tool Handlers]
         subgraph "Available Tools"
             CALC[calculate_sum]
-            REV[reverse_string] 
+            REV[reverse_string]
             TIME[get_current_time]
         end
     end
-    
+
     subgraph "Communication Layer"
         STDIO[stdio Transport]
     end
-    
+
     CC --> MCP_CLIENT
     MCP_CLIENT <--> STDIO
     STDIO <--> SERVER
@@ -246,7 +246,7 @@ graph TB
     TOOLS --> CALC
     TOOLS --> REV
     TOOLS --> TIME
-    
+
     style CC fill:#3b82f6,color:#fff
     style SERVER fill:#10b981,color:#fff
     style STDIO fill:#f59e0b,color:#fff
@@ -268,7 +268,7 @@ sequenceDiagram
     Client->>Server: Connect via stdio
     Server->>Client: Send available tools list
     Client->>Claude: Register tools
-    
+
     Note over User,Tool: Tool Execution Flow
     User->>Claude: "Calculate 42 + 58"
     Claude->>Client: Call calculate_sum(42, 58)
@@ -279,7 +279,7 @@ sequenceDiagram
     Server->>Client: Send response
     Client->>Claude: Return tool result
     Claude->>User: Display: "The sum of 42 and 58 is 100"
-    
+
     Note over User,Tool: Error Handling
     User->>Claude: "Invalid request"
     Claude->>Client: Invalid tool call
