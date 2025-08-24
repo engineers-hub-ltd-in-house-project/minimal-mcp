@@ -214,6 +214,60 @@ node --version  # Should be 22+
 npm install
 ```
 
+## Demo
+
+### Installation and Setup
+
+Install the MCP server via Claude Code:
+
+```bash
+claude mcp add minimal-mcp-server minimal-mcp-server
+```
+
+### Live Test Results
+
+Here are actual test results from Claude Code integration:
+
+#### 1. Calculate Sum
+```
+Input: calculate_sum(42, 58)
+Output: "The sum of 42 and 58 is 100"
+```
+
+#### 2. Reverse String
+```
+Input: reverse_string("Hello MCP World")
+Output: "Reversed text: dlroW PCM olleH"
+```
+
+#### 3. Get Current Time
+```
+Input: get_current_time()
+Output: "Current time: 2025-08-24T02:19:17.244Z"
+```
+
+### Python Client Test
+
+You can also test with the included Python client:
+
+```bash
+cd client
+python client.py
+```
+
+Example output:
+```
+🚀 Initializing MCP agent and connecting to services...
+✅ Created 1 new sessions
+🧠 Agent ready with tools: calculate_sum, reverse_string, get_current_time
+🔧 Tool call: calculate_sum with input: {'a': 42, 'b': 58}
+📄 Tool result: The sum of 42 and 58 is 100
+🔧 Tool call: reverse_string with input: {'text': 'Hello MCP'}
+📄 Tool result: Reversed text: PCM olleH
+🔧 Tool call: get_current_time with input: {}
+📄 Tool result: Current time: 2025-08-24T02:16:40.654Z
+```
+
 ## License
 
 MIT

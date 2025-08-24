@@ -1,11 +1,33 @@
 {
   "name": "minimal-mcp-server",
   "version": "1.0.0",
-  "description": "A minimal MCP server implementation",
+  "description": "A minimal MCP server implementation for educational and development purposes",
   "type": "module",
+  "main": "./build/index.js",
   "bin": {
     "minimal-mcp-server": "./build/index.js"
   },
+  "files": [
+    "build/**/*",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "claude",
+    "server",
+    "tools"
+  ],
+  "author": "Engineers Hub Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/engineers-hub-ltd-in-house-project/minimal-mcp.git",
+    "directory": "server"
+  },
+  "homepage": "https://github.com/engineers-hub-ltd-in-house-project/minimal-mcp#readme",
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
     "watch": "tsc --watch",
