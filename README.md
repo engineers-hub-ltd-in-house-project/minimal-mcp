@@ -14,8 +14,8 @@ minimal-mcp/
 
 ## Prerequisites
 
-- Node.js 18+
-- Python 3.8+
+- Node.js 22+
+- Python 3.13+
 - TypeScript
 
 ## Server Setup
@@ -210,7 +210,7 @@ the URL shown in the terminal output.
 Check Node.js version and ensure all dependencies are installed:
 
 ```bash
-node --version  # Should be 18+
+node --version  # Should be 22+
 npm install
 ```
 
