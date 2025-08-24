@@ -1,6 +1,7 @@
 # Minimal MCP
 
-A minimal implementation of Model Context Protocol (MCP) server and client for educational and development purposes.
+A minimal implementation of Model Context Protocol (MCP) server and client for
+educational and development purposes.
 
 ## Project Structure
 
@@ -38,7 +39,8 @@ npm run build
 npm run inspector
 ```
 
-Open `http://localhost:5173` in your browser to test the server tools.
+Open the URL shown in the terminal (typically `http://localhost:6274/`) to test
+the server tools.
 
 ## Client Setup
 
@@ -58,9 +60,10 @@ pip install -r requirements.txt
 
 ### Configure Environment
 
+Create `.env` file with your OpenAI API key:
+
 ```bash
-cp .env.example .env
-# Edit .env and add your OpenAI API key
+echo "OPENAI_API_KEY=your_openai_api_key_here" > .env
 ```
 
 ### Run Client
@@ -74,14 +77,37 @@ python client.py
 The MCP server provides three tools:
 
 1. **calculate_sum**: Adds two numbers
+   - Parameters: `a` (number), `b` (number)
+   - Example: `calculate_sum(42, 58)` → `100`
+
 2. **reverse_string**: Reverses a text string
+   - Parameters: `text` (string)
+   - Example: `reverse_string('Hello MCP')` → `'PCM olleH'`
+
 3. **get_current_time**: Returns current ISO timestamp
+   - Parameters: none
+   - Example: `get_current_time()` → `'2025-08-24T01:52:39.749Z'`
 
-## Claude Code Integration
+## Usage Methods
 
-### Add MCP Server
+### Method 1: Direct Client Testing
 
-Create `mcp_config.json`:
+Run the Python client to test all tools:
+
+```bash
+cd client
+python client.py
+```
+
+This will automatically:
+
+1. Connect to the MCP server
+2. Execute all three tools with sample data
+3. Display results
+
+### Method 2: Claude Code Integration
+
+Add MCP server to Claude Code configuration:
 
 ```json
 {
@@ -94,14 +120,25 @@ Create `mcp_config.json`:
 }
 ```
 
-### Usage in Claude Code
+Then use in Claude Code:
 
 ```
 Using the minimal-mcp tools:
 1. Calculate the sum of 123 and 456
-2. Reverse the text "Model Context Protocol"  
+2. Reverse the text "Model Context Protocol"
 3. Get the current time
 ```
+
+### Method 3: MCP Inspector
+
+Use the official MCP inspector for interactive testing:
+
+```bash
+cd server
+npm run inspector
+```
+
+Open the URL shown in the terminal to test tools interactively in the browser.
 
 ## Development
 
@@ -114,25 +151,44 @@ npm run watch  # Auto-rebuild on changes
 
 ### Adding New Tools
 
-Edit `server/src/index.ts` and add new tools:
+Edit `server/src/index.ts` to add new tools:
+
+1. **Add tool definition to the `tools` array:**
 
 ```typescript
-server.tool(
-  "tool_name",
-  {
-    param: z.string().describe("Parameter description")
-  },
-  async ({ param }) => {
-    return {
-      content: [
-        {
-          type: "text",
-          text: `Result: ${param}`
-        }
-      ]
-    };
+{
+  name: "your_tool_name",
+  description: "Description of what the tool does",
+  inputSchema: {
+    type: "object",
+    properties: {
+      param: { type: "string", description: "Parameter description" }
+    },
+    required: ["param"]
   }
-);
+}
+```
+
+2. **Add tool handler in the `CallToolRequestSchema` switch case:**
+
+```typescript
+case "your_tool_name":
+  const { param } = args as { param: string };
+  // Your tool logic here
+  return {
+    content: [
+      {
+        type: "text",
+        text: `Result: ${param}`
+      }
+    ]
+  };
+```
+
+3. **Rebuild the server:**
+
+```bash
+npm run build
 ```
 
 ## Troubleshooting
@@ -143,11 +199,11 @@ server.tool(
 chmod +x server/build/index.js
 ```
 
-### Port Already in Use
+### Inspector Port Issues
 
-```bash
-npm run inspector -- --port 5174
-```
+The inspector automatically finds available ports. If you see different port
+numbers in the output (e.g., proxy on 6277, web UI on 6274), this is normal. Use
+the URL shown in the terminal output.
 
 ### Module Not Found
 

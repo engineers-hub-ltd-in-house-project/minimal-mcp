@@ -1,0 +1,35 @@
+pre-commit:
+  parallel: true
+  commands:
+    # Markdown formatting
+    markdown-format:
+      glob: "*.md"
+      run: npx prettier --write {staged_files}
+    
+    # TypeScript formatting and linting
+    typescript-format:
+      glob: "**/*.{ts,js}"
+      run: npx prettier --write {staged_files}
+    
+    typescript-lint:
+      glob: "**/*.{ts,js}"
+      run: npx eslint --fix {staged_files}
+    
+    # Python formatting and linting  
+    python-format:
+      glob: "**/*.py"
+      run: python -m black {staged_files}
+    
+    python-lint:
+      glob: "**/*.py" 
+      run: python -m flake8 {staged_files}
+
+pre-push:
+  commands:
+    # Build check
+    build-check:
+      run: cd server && npm run build
+    
+    # Type check
+    type-check:
+      run: cd server && npx tsc --noEmit
