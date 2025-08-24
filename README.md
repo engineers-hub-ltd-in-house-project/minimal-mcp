@@ -229,18 +229,21 @@ claude mcp add minimal-mcp-server minimal-mcp-server
 Here are actual test results from Claude Code integration:
 
 #### 1. Calculate Sum
+
 ```
 Input: calculate_sum(42, 58)
 Output: "The sum of 42 and 58 is 100"
 ```
 
 #### 2. Reverse String
+
 ```
 Input: reverse_string("Hello MCP World")
 Output: "Reversed text: dlroW PCM olleH"
 ```
 
 #### 3. Get Current Time
+
 ```
 Input: get_current_time()
 Output: "Current time: 2025-08-24T02:19:17.244Z"
@@ -256,6 +259,7 @@ python client.py
 ```
 
 Example output:
+
 ```
 🚀 Initializing MCP agent and connecting to services...
 ✅ Created 1 new sessions

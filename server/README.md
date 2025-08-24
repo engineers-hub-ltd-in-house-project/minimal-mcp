@@ -1,13 +1,14 @@
 # Minimal MCP Server
 
-A minimal implementation of Model Context Protocol (MCP) server for educational and development purposes.
+A minimal implementation of Model Context Protocol (MCP) server for educational
+and development purposes.
 
 ## Features
 
 This MCP server provides three basic tools:
 
 1. **calculate_sum** - Adds two numbers
-2. **reverse_string** - Reverses a text string  
+2. **reverse_string** - Reverses a text string
 3. **get_current_time** - Returns current ISO timestamp
 
 ## Installation
@@ -51,6 +52,7 @@ npx @modelcontextprotocol/inspector minimal-mcp-server
 Calculates the sum of two numbers.
 
 **Parameters:**
+
 - `a` (number): First number
 - `b` (number): Second number
 
@@ -61,6 +63,7 @@ Calculates the sum of two numbers.
 Reverses a text string.
 
 **Parameters:**
+
 - `text` (string): Text to reverse
 
 **Example:** `reverse_string('Hello MCP')` → `'PCM olleH'`
@@ -75,7 +78,8 @@ Returns the current time as an ISO timestamp.
 
 ## Development
 
-See the main repository: https://github.com/engineers-hub-ltd-in-house-project/minimal-mcp
+See the main repository:
+https://github.com/engineers-hub-ltd-in-house-project/minimal-mcp
 
 ## License
 
