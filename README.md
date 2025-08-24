@@ -218,10 +218,36 @@ npm install
 
 ### Installation and Setup
 
-Install the MCP server via Claude Code:
+#### Method 1: Claude Code Integration
+
+Add the MCP server directly to Claude Code:
 
 ```bash
 claude mcp add minimal-mcp-server minimal-mcp-server
+```
+
+#### Method 2: Global npm Installation
+
+Install globally and configure manually:
+
+```bash
+# Install the package globally
+npm install -g minimal-mcp-server
+
+# Then add to Claude Code configuration manually
+# (or use other MCP-compatible clients)
+```
+
+Manual configuration for Claude Code:
+
+```json
+{
+  "mcpServers": {
+    "minimal-mcp-server": {
+      "command": "minimal-mcp-server"
+    }
+  }
+}
 ```
 
 ### Live Test Results
